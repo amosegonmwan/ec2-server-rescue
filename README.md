@@ -54,30 +54,31 @@ sudo mount /dev/xvdf2 /data
 sudo mount -t xfs -o nouuid /dev/xvdf2 /data
 ```
 
-- After mounting, change directory into ```sh /data/home/ec2-user/.ssh/:```
+- After mounting, change directory into `/data/home/ec2-user/.ssh/:`
 ```sh
 cd /data/home/ec2-user/.ssh/
 ```
 
 
-### 7. Copy the New Private SSH Key to the ```sh authorized_keys ``` File
-- Copy or cat the authorized keys from the home of the user and append it to ```sh /data/home/ec2-user/.ssh/authorized_keys: ```
+### 7. Copy the New Private SSH Key to the `authorized_keys` File
+- Copy or cat the authorized keys from the home of the user and append it to `/data/home/ec2-user/.ssh/authorized_keys:`
 ```sh
 cat ~/.ssh/authorized_keys >> /data/home/ec2-user/.ssh/authorized_keys
 ```
 
 ### 8. Unmount the Volume and Detach It
 - After successfully appending the keys, unmount the volume using:
-- ```sh sudo umount -d /dev/xvdf2 ```
-- If you list the volumes using ```sh lsblk,``` it should show that it is unmounted. Now go back to the AWS console and reattach the volume to the server that was missing the key. Ensure that the device name is ```sh /dev/sda1 ``` which is the root volume.
+- `sudo umount -d /dev/xvdf2`
+- If you list the volumes using `lsblk,` it should show that it is unmounted. Now go back to the AWS console and reattach the volume to the server that was missing the key. Ensure that the device name is `/dev/sda1` which is the root volume.
 
-### 9. Reattach the Volume to ```sh crashed-ec2 ```
+### 9. Reattach the Volume to `target-ec2` as the Root Volume
+
 - Attach the volume back to the target-ec2 instance as /dev/sda1 (or the original device name).
 
-### 10. Start the ```sh target-ec2``` Instance
+### 10. Start the `target-ec2` Instance
 - Start the ```sh target-ec2``` instance from the EC2 Dashboard.
 
-### 11. SSH into the ```sh target-ec2``` Instance Using the ```sh rescue-key.pem```
+### 11. SSH into the `target-ec2` Instance Using the `rescue-key.pem`
 ```sh
 ssh -i rescue-key.pem ec2-user@<crashed-ec2-public-dns>
 ```
