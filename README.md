@@ -6,7 +6,7 @@ This guide details the steps to rescue an AWS EC2 instance (`target-ec2`) after 
 ## Steps:
 
 ### 1.  Create a New EC2 Instance
-- Launch a new EC2 instance called `rescue-ec2` with the key pair `rescue-key.pem`.
+- Launch a new EC2 instance called `rescue-ec2` with the key pair `rescue-key.pem` in the same Availability zone (AZ) as the `targe-ec2` or server with missing SSH keys.
 
 ### 2. Stop the Target EC2 Instance
 - Stop the target instance (`target-ec2`) from the EC2 Dashboard.
